@@ -62,6 +62,26 @@ Use this order unless the topic requires a different flow:
 - Check whether version-sensitive details are current before publishing.
 - Link to prerequisite concepts rather than re-explaining unrelated topics.
 
+## Writing Agent Maintenance
+
+- Treat `.claude/agents/*.md` as the editable source of truth for writing-agent
+  profiles.
+- Do not edit `.codex/agents/*.toml` directly. Codex uses generated TOML copies
+  because it cannot load the Claude Code Markdown format.
+- After editing, adding, or removing a writing-agent profile, regenerate the
+  Codex copies:
+
+  ```bash
+  python3 scripts/sync-agents.py
+  ```
+
+- Before finishing agent-profile changes, confirm the generated files are
+  current:
+
+  ```bash
+  python3 scripts/sync-agents.py --check
+  ```
+
 ## Review Checklist
 
 Before considering a tutorial complete, confirm that:
